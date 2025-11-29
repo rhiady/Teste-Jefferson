@@ -36,5 +36,51 @@ public class Entidade {
     public Entidade() {
     }
 
+    public Entidade(Long idEntidade, String nome, String documento, String tipo, Usuario usuario) {
+        this.idEntidade = idEntidade;
+        this.nome = nome;
+        this.documento = documento;
+        this.tipo = tipo;
+        this.usuario = usuario;
+    }
 
+    public Long getIdEntidade() {
+        return idEntidade;
+    }
+
+    public void setIdEntidade(Long idEntidade) {
+        this.idEntidade = idEntidade;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

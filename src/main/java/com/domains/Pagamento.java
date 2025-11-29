@@ -1,7 +1,9 @@
 package com.domains;
 
+import com.domains.enums.TipoLancamento;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.services.exceptions.RegraNegocioException;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
@@ -20,7 +22,7 @@ public class Pagamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pagamento")
-    private Integer idPagamento;
+    private Long idPagamento;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -44,4 +46,71 @@ public class Pagamento {
 
     @Column(length = 255)
     private String observacao;
+    public void validarCompatibilidade() {
+        if (lancamento.getTipo() != TipoLancamento.PAGAR) {
+            throw new RegraNegocioException("Pagamento só é permitido para lançamentos do tipo PAGAR.");
+        }
+        contaOrigem.validarAtiva();
+    }
+
+    public Pagamento() {
+    }
+
+    public Pagamento(Long idPagamento, Lancamento lancamento, Date dataPagamento, BigDecimal valorPago, ContaBancaria contaOrigem, String observacao) {
+        this.idPagamento = idPagamento;
+        this.lancamento = lancamento;
+        this.dataPagamento = dataPagamento;
+        this.valorPago = valorPago;
+        this.contaOrigem = contaOrigem;
+        this.observacao = observacao;
+    }
+
+    public Long getIdPagamento() {
+        return idPagamento;
+    }
+
+    public void setIdPagamento(Long idPagamento) {
+        this.idPagamento = idPagamento;
+    }
+
+    public Lancamento getLancamento() {
+        return lancamento;
+    }
+
+    public void setLancamento(Lancamento lancamento) {
+        this.lancamento = lancamento;
+    }
+
+    public Date getDataPagamento() {
+        return dataPagamento;
+    }
+
+    public void setDataPagamento(Date dataPagamento) {
+        this.dataPagamento = dataPagamento;
+    }
+
+    public BigDecimal getValorPago() {
+        return valorPago;
+    }
+
+    public void setValorPago(BigDecimal valorPago) {
+        this.valorPago = valorPago;
+    }
+
+    public ContaBancaria getContaOrigem() {
+        return contaOrigem;
+    }
+
+    public void setContaOrigem(ContaBancaria contaOrigem) {
+        this.contaOrigem = contaOrigem;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
 }

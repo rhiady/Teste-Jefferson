@@ -19,7 +19,7 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
-    private Integer idUsuario;
+    private Long idUsuario;
 
     @NotBlank
     @Column(nullable = false, length = 65)
@@ -57,4 +57,99 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Transferencia> transferencias = new ArrayList<>();
 
+    public Usuario() {
+    }
+
+    public Usuario(Long idUsuario, String nome, String email, LocalDateTime criadoEm, List<ContaBancaria> contas, List<CartaoCredito> cartoes, List<Entidade> entidades, List<CentroCusto> centros, List<Lancamento> lancamentos, List<Transferencia> transferencias) {
+        this.idUsuario = idUsuario;
+        this.nome = nome;
+        this.email = email;
+        this.criadoEm = criadoEm;
+        this.contas = contas;
+        this.cartoes = cartoes;
+        this.entidades = entidades;
+        this.centros = centros;
+        this.lancamentos = lancamentos;
+        this.transferencias = transferencias;
+    }
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDateTime getCriadoEm() {
+        return criadoEm;
+    }
+
+    public void setCriadoEm(LocalDateTime criadoEm) {
+        this.criadoEm = criadoEm;
+    }
+
+    public List<ContaBancaria> getContas() {
+        return contas;
+    }
+
+    public void setContas(List<ContaBancaria> contas) {
+        this.contas = contas;
+    }
+
+    public List<CartaoCredito> getCartoes() {
+        return cartoes;
+    }
+
+    public void setCartoes(List<CartaoCredito> cartoes) {
+        this.cartoes = cartoes;
+    }
+
+    public List<Entidade> getEntidades() {
+        return entidades;
+    }
+
+    public void setEntidades(List<Entidade> entidades) {
+        this.entidades = entidades;
+    }
+
+    public List<CentroCusto> getCentros() {
+        return centros;
+    }
+
+    public void setCentros(List<CentroCusto> centros) {
+        this.centros = centros;
+    }
+
+    public List<Lancamento> getLancamentos() {
+        return lancamentos;
+    }
+
+    public void setLancamentos(List<Lancamento> lancamentos) {
+        this.lancamentos = lancamentos;
+    }
+
+    public List<Transferencia> getTransferencias() {
+        return transferencias;
+    }
+
+    public void setTransferencias(List<Transferencia> transferencias) {
+        this.transferencias = transferencias;
+    }
 }
