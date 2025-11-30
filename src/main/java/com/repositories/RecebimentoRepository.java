@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface RecebimentoRepository extends JpaRepository<Recebimento, Long> {
 
-    List<Recebimento> findByLancamento_Id(Long lancamentoId);
 
-    boolean existsByContaDestino_Id(Long contaId);
+    List<Recebimento> findByLancamento_IdLancamento(Long idLancamento);
 }

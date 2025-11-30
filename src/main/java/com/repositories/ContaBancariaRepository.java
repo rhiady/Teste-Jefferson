@@ -9,7 +9,8 @@ import java.util.List;
 @Repository
 public interface ContaBancariaRepository extends JpaRepository<ContaBancaria, Long> {
 
-    List<ContaBancaria> findByUsuario_Id(Long usuarioId);
 
-    boolean existsByUsuario_Id(Long usuarioId);
+    List<ContaBancaria> findByUsuario_IdUsuario(Long idUsuario);
+
+    boolean existsByUsuario_IdUsuario(Long idUsuario);
 }

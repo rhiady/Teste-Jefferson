@@ -11,8 +11,9 @@ import java.util.Optional;
 @Repository
 public interface FaturaCartaoRepository extends JpaRepository<FaturaCartao, Long> {
 
-    Optional<FaturaCartao> findByCartao_IdAndCompetencia(Long cartaoId, LocalDate competencia);
 
-    List<FaturaCartao> findByCartao_Id(Long cartaoId);
+    List<FaturaCartao> findByCartao_IdCartaoCredito(Long idCartaoCredito);
+
+    Optional<FaturaCartao> findByCartao_IdCartaoCreditoAndCompetencia(Long idCartaoCredito, String competencia);
 }
 

@@ -9,7 +9,8 @@ import java.util.List;
 @Repository
 public interface CartaoCreditoRepository extends JpaRepository<CartaoCredito, Long> {
 
-    List<CartaoCredito> findByUsuario_Id(Long usuarioId);
 
-    boolean existsByUsuario_Id(Long usuarioId);
+    List<CartaoCredito> findByUsuario_IdUsuario(Long idUsuario);
+
+    boolean existsByUsuario_IdUsuario(Long idUsuario);
 }

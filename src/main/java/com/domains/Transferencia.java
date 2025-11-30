@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -37,10 +38,9 @@ public class Transferencia {
     private ContaBancaria contaDestino;
 
     @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    @Column(nullable = false)
-    private Date data;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "data", nullable = false)
+    private LocalDate data;
 
     @NotNull
     @Digits(integer = 15, fraction = 2)
@@ -64,13 +64,69 @@ public class Transferencia {
     public Transferencia() {
     }
 
-    public Transferencia(Long idTransferencia, Usuario usuario, ContaBancaria contaOrigem, ContaBancaria contaDestino, Date data, BigDecimal valor, String observacao) {
+    public Transferencia(Long idTransferencia, Usuario usuario, ContaBancaria contaOrigem, ContaBancaria contaDestino, LocalDate data, BigDecimal valor, String observacao) {
         this.idTransferencia = idTransferencia;
         this.usuario = usuario;
         this.contaOrigem = contaOrigem;
         this.contaDestino = contaDestino;
         this.data = data;
         this.valor = valor;
+        this.observacao = observacao;
+    }
+
+    public Long getIdTransferencia() {
+        return idTransferencia;
+    }
+
+    public void setIdTransferencia(Long idTransferencia) {
+        this.idTransferencia = idTransferencia;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public ContaBancaria getContaOrigem() {
+        return contaOrigem;
+    }
+
+    public void setContaOrigem(ContaBancaria contaOrigem) {
+        this.contaOrigem = contaOrigem;
+    }
+
+    public ContaBancaria getContaDestino() {
+        return contaDestino;
+    }
+
+    public void setContaDestino(ContaBancaria contaDestino) {
+        this.contaDestino = contaDestino;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
 }

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +33,7 @@ public class Usuario {
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(nullable = false)
-    private LocalDateTime criadoEm = LocalDateTime.now();
+    private LocalDate criadoEm ;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = false)
@@ -60,7 +62,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, String nome, String email, LocalDateTime criadoEm, List<ContaBancaria> contas, List<CartaoCredito> cartoes, List<Entidade> entidades, List<CentroCusto> centros, List<Lancamento> lancamentos, List<Transferencia> transferencias) {
+    public Usuario(Long idUsuario, String nome, String email, LocalDate criadoEm, List<ContaBancaria> contas, List<CartaoCredito> cartoes, List<Entidade> entidades, List<CentroCusto> centros, List<Lancamento> lancamentos, List<Transferencia> transferencias) {
         this.idUsuario = idUsuario;
         this.nome = nome;
         this.email = email;
@@ -97,11 +99,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public LocalDateTime getCriadoEm() {
+    public LocalDate getCriadoEm() {
         return criadoEm;
     }
 
-    public void setCriadoEm(LocalDateTime criadoEm) {
+    public void setCriadoEm(LocalDate criadoEm) {
         this.criadoEm = criadoEm;
     }
 

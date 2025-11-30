@@ -46,7 +46,6 @@ public class ContaBancaria {
     private BigDecimal saldoInicial;
 
     @NotNull
-    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "data_saldo_inicial", nullable = false)
     private LocalDate dataSaldoInicial;

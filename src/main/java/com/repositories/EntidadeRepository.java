@@ -9,7 +9,8 @@ import java.util.List;
 @Repository
 public interface EntidadeRepository extends JpaRepository<Entidade, Long> {
 
-    List<Entidade> findByUsuario_Id(Long usuarioId);
 
-    boolean existsByUsuario_IdAndDocumento(Long usuarioId, String documento);
+    List<Entidade> findByUsuario_IdUsuario(Long idUsuario);
+
+    List<Entidade> findByUsuario_IdUsuarioAndNomeContainingIgnoreCase(Long idUsuario, String nome);
 }

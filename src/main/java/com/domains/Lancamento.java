@@ -14,6 +14,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -60,15 +61,13 @@ public class Lancamento {
     private CentroCusto centroCusto;
 
     @NotNull
-    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "data_competencia", nullable = false)
-    private Date dataCompetencia;
+    private LocalDate dataCompetencia;
 
-    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "data_vencimento")
-    private Date dataVencimento;
+    private LocalDate dataVencimento;
 
     @Convert(converter = com.infra.MeioPagamentoConverter.class)
     @Column(name = "meioPagamento", nullable = false)
@@ -141,7 +140,7 @@ public class Lancamento {
     public Lancamento() {
     }
 
-    public Lancamento(Long idLancamento, String descricao, BigDecimal valor, Usuario usuario, TipoLancamento tipo, Entidade entidade, CentroCusto centroCusto, Date dataCompetencia, Date dataVencimento, MeioPagamento meioPagamento, ContaBancaria contaBancaria, CartaoCredito cartaoCredito, StatusLancamento status, BigDecimal valorBaixado, List<Pagamento> pagamentos, List<Recebimento> recebimentos) {
+    public Lancamento(Long idLancamento, String descricao, BigDecimal valor, Usuario usuario, TipoLancamento tipo, Entidade entidade, CentroCusto centroCusto, LocalDate dataCompetencia, LocalDate dataVencimento, MeioPagamento meioPagamento, ContaBancaria contaBancaria, CartaoCredito cartaoCredito, StatusLancamento status, BigDecimal valorBaixado, List<Pagamento> pagamentos, List<Recebimento> recebimentos) {
         this.idLancamento = idLancamento;
         this.descricao = descricao;
         this.valor = valor;
@@ -216,19 +215,19 @@ public class Lancamento {
         this.centroCusto = centroCusto;
     }
 
-    public Date getDataCompetencia() {
+    public LocalDate getDataCompetencia() {
         return dataCompetencia;
     }
 
-    public void setDataCompetencia(Date dataCompetencia) {
+    public void setDataCompetencia(@NotNull LocalDate dataCompetencia) {
         this.dataCompetencia = dataCompetencia;
     }
 
-    public Date getDataVencimento() {
+    public LocalDate getDataVencimento() {
         return dataVencimento;
     }
 
-    public void setDataVencimento(Date dataVencimento) {
+    public void setDataVencimento(LocalDate dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
 

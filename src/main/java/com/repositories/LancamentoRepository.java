@@ -1,23 +1,24 @@
 package com.repositories;
 
 import com.domains.Lancamento;
+import com.domains.enums.StatusLancamento;
+import com.domains.enums.TipoLancamento;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+import java.time.LocalDate;
+import java.util.List;
+
 public interface LancamentoRepository extends JpaRepository<Lancamento, Long> {
 
-    Page<Lancamento> findByUsuario_Id(Long usuarioId, Pageable pageable);
 
-    Page<Lancamento> findByContaBancaria_Id(Long contaId, Pageable pageable);
+    List<Lancamento> findByUsuario_IdUsuario(Long idUsuario);
 
-    Page<Lancamento> findByCartaoCredito_Id(Long cartaoId, Pageable pageable);
+    List<Lancamento> findByUsuario_IdUsuarioAndTipo(Long idUsuario, TipoLancamento tipo);
 
-    Page<Lancamento> findByEntidade_Id(Long entidadeId, Pageable pageable);
+    List<Lancamento> findByUsuario_IdUsuarioAndStatus(Long idUsuario, StatusLancamento status);
 
-    Page<Lancamento> findByCentroCusto_Id(Long centroCustoId, Pageable pageable);
-
-    boolean existsByUsuario_Id(Long usuarioId);
+    List<Lancamento> findByUsuario_IdUsuarioAndDataCompetenciaBetween(Long idUsuario, LocalDate inicio, LocalDate fim);
 }

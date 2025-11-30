@@ -9,7 +9,8 @@ import java.util.List;
 @Repository
 public interface CentroCustoRepository extends JpaRepository<CentroCusto, Long> {
 
-    List<CentroCusto> findByUsuario_Id(Long usuarioId);
 
-    boolean existsByUsuario_IdAndCodigo(Long usuarioId, String codigo);
+    List<CentroCusto> findByUsuario_IdUsuario(Long idUsuario);
+
+    boolean existsByUsuario_IdUsuarioAndCodigo(Long idUsuario, String codigo);
 }

@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -30,10 +31,9 @@ public class Pagamento {
     private Lancamento lancamento;
 
     @NotNull
-    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "data_pagamento", nullable = false)
-    private Date dataPagamento;
+    private LocalDate dataPagamento;
 
     @NotNull
     @Digits(integer = 15, fraction = 2)
@@ -56,7 +56,7 @@ public class Pagamento {
     public Pagamento() {
     }
 
-    public Pagamento(Long idPagamento, Lancamento lancamento, Date dataPagamento, BigDecimal valorPago, ContaBancaria contaOrigem, String observacao) {
+    public Pagamento(Long idPagamento, Lancamento lancamento, LocalDate dataPagamento, BigDecimal valorPago, ContaBancaria contaOrigem, String observacao) {
         this.idPagamento = idPagamento;
         this.lancamento = lancamento;
         this.dataPagamento = dataPagamento;
@@ -81,11 +81,11 @@ public class Pagamento {
         this.lancamento = lancamento;
     }
 
-    public Date getDataPagamento() {
+    public LocalDate getDataPagamento() {
         return dataPagamento;
     }
 
-    public void setDataPagamento(Date dataPagamento) {
+    public void setDataPagamento(@NotNull LocalDate dataPagamento) {
         this.dataPagamento = dataPagamento;
     }
 

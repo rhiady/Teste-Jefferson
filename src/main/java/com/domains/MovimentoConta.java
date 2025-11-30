@@ -9,7 +9,6 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "movimento_conta")
@@ -30,8 +29,7 @@ public class MovimentoConta {
     private ContaBancaria conta;
 
     @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "dd/MM/yyyy ")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "data_movimento", nullable = false)
     private LocalDate dataMovimento;
 
@@ -89,7 +87,7 @@ public class MovimentoConta {
         return dataMovimento;
     }
 
-    public void setDataMovimento(LocalDate dataMovimento) {
+    public void setDataMovimento(@NotNull LocalDate dataMovimento) {
         this.dataMovimento = dataMovimento;
     }
 

@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
 
-    List<Pagamento> findByLancamento_Id(Long lancamentoId);
 
-    boolean existsByContaOrigem_Id(Long contaId);
+    List<Pagamento> findByLancamento_IdLancamento(Long idLancamento);
 }

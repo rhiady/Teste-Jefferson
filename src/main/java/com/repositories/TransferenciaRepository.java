@@ -9,9 +9,6 @@ import java.util.List;
 @Repository
 public interface TransferenciaRepository extends JpaRepository<Transferencia, Long> {
 
-    List<Transferencia> findByUsuario_Id(Long usuarioId);
 
-    boolean existsByContaOrigem_Id(Long contaId);
-
-    boolean existsByContaDestino_Id(Long contaId);
+    List<Transferencia> findByUsuario_IdUsuario(Long idUsuario);
 }

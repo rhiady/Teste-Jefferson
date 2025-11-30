@@ -26,13 +26,10 @@ public class FaturaCartao {
 
     private String competencia;
 
-    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy")
-    @Column(name = "data_fechamento")
+    @Column(name = "data_fechamento", nullable = false)
     private LocalDate dataFechamento;
 
-    @NotNull
-    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "data_vencimento", nullable = false)
     private LocalDate dataVencimento;
