@@ -51,14 +51,8 @@ public class DBService {
     @Transactional
     public void initDB() {
 
-        // evita duplicar dados toda vez que a app sobe
-        if (usuarioRepo.count() > 0) {
-            return;
-        }
-
         LocalDate hoje = LocalDate.now();
 
-        // =============== USUÁRIO ===============
         Usuario usuario01 = new Usuario(
                 null,
                 "Usuário Demo",
@@ -74,7 +68,6 @@ public class DBService {
 
         usuarioRepo.save(usuario01);
 
-        // =============== CONTAS BANCÁRIAS ===============
         ContaBancaria conta01 = new ContaBancaria(
                 null,
                 "Nubank",
@@ -101,7 +94,6 @@ public class DBService {
 
         contaRepo.saveAll(List.of(conta01, conta02));
 
-        // =============== CARTÃO DE CRÉDITO ===============
         CartaoCredito cartao01 = new CartaoCredito(
                 null,
                 "Mastercard",
@@ -117,11 +109,10 @@ public class DBService {
 
         cartaoRepo.save(cartao01);
 
-        // =============== FATURA ===============
         FaturaCartao fatura01 = new FaturaCartao(
                 null,
                 "03/2025",
-                LocalDate.now(),                           // fatura aberta ainda sem fechamento
+                hoje,
                 hoje.plusDays(15),
                 BigDecimal.ZERO,
                 StatusFatura.ABERTA,
@@ -130,7 +121,6 @@ public class DBService {
 
         faturaRepo.save(fatura01);
 
-        // =============== ENTIDADES ===============
         Entidade entidade01 = new Entidade(
                 null,
                 "Companhia de Energia",
@@ -157,7 +147,6 @@ public class DBService {
 
         entidadeRepo.saveAll(List.of(entidade01, entidade02, entidade03));
 
-        // =============== CENTROS DE CUSTO ===============
         CentroCusto centro01 = new CentroCusto(
                 null,
                 "Casa",
@@ -178,7 +167,6 @@ public class DBService {
 
         centroRepo.saveAll(List.of(centro01, centro02));
 
-        // =============== LANÇAMENTOS ===============
         Lancamento lancamento01 = new Lancamento(
                 null,
                 "Conta de energia elétrica",
@@ -238,7 +226,6 @@ public class DBService {
 
         lancamentoRepo.saveAll(List.of(lancamento01, lancamento02, lancamento03));
 
-        // =============== PAGAMENTO ===============
         Pagamento pagamento01 = new Pagamento(
                 null,
                 lancamento01,
@@ -250,7 +237,6 @@ public class DBService {
 
         pagamentoRepo.save(pagamento01);
 
-        // =============== RECEBIMENTO ===============
         Recebimento recebimento01 = new Recebimento(
                 null,
                 lancamento03,
@@ -262,7 +248,6 @@ public class DBService {
 
         recebimentoRepo.save(recebimento01);
 
-        // =============== MOVIMENTOS DE CONTA ===============
         MovimentoConta movimento01 = new MovimentoConta(
                 null,
                 conta01,
@@ -283,7 +268,6 @@ public class DBService {
                 "LANCAMENTO_RECEBIMENTO"
         );
 
-        // transferência
         Transferencia transferencia01 = new Transferencia(
                 null,
                 usuario01,
